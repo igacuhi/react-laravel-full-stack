@@ -8,8 +8,8 @@ import { ContextProvider } from './contexts/ContextProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <contentProvider>
-    <RouterProvider router={router} />
-    </contentProvider>
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </StrictMode>,
 )

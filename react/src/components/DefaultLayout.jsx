@@ -1,19 +1,23 @@
 import { Link, Navigate, Outlet } from "react-router-dom";
-import { useStateContext } from "../contexts/ContextProvider";
+import { useStateContext } from "../contexts/ContextProvider.jsx";
 
 export default function DefaultLayout() {
-    const{user,token} = useStateContext()
+    const {user, token} = useStateContext();
 
     if (!token) {
 
-        return <Navigate to="/login" />
+        return <Navigate to="/auth/login" />
     }
+
+const onLogout = (ev) => {
+    ev.preventDefault()
+}
 
     return (
         <div id="defaultLayout">
             <aside>
-                <link to="/dashboard">Dashboard</link>
-                <link to="/users">Users</link>
+                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/users">Users</Link>
             </aside>
             <div className="content">
                 <header>
@@ -21,11 +25,14 @@ export default function DefaultLayout() {
                         Header
                     </div>
                     <div>
-                        User info
+                        {user.name}
+                        <a href="#" onClick={onLogout}  className="btn-logout">Logout</a>
                     </div>
                 </header>
+                <main>
+                    <Outlet />
+                </main>
             </div>
-            <Outlet />
         </div>
     )
 }
