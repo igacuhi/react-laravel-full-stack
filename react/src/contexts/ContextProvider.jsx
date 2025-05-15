@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
         name: 'John',
         
     });
-    const [token,_settoken] = useState(123);
+    const [token,_settoken] = useState(null);
 
     const setToken = (token) => {
         _settoken(token);
